@@ -45,6 +45,8 @@ with open("users.csv") as users:
     read = csv.reader(users)
 
     for user in read:
+        if user[-1] == 'elderly':
+            continue
         c_hobbies = user[2].split(", ")
         c_city = user[3]
         c_state = user[4]
