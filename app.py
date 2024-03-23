@@ -34,7 +34,7 @@ def signup():
         role = request.form['role']
         print(role)
         # save_to_csv([name, email, hobbies, location, role])
-        if role == "caretaker":
+        if role == "caregiver":
             return redirect(url_for('caretaker'))
         else:
             return redirect(url_for("caretaker"))
@@ -48,7 +48,7 @@ def caretaker():
         hobbies = request.form['hobbies']
         location = request.form['location']
         # role = request.form['role']
-        save_to_csv([name, email, hobbies, location, role])
+        save_to_csv([name, email, hobbies, location, "caretaker"])
         return redirect(url_for('login'))
     return render_template('caretaker.html')
 
