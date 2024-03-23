@@ -1,3 +1,3 @@
-name,email,hobbies,city,state,type
-eshan,eshan@gmail.com,"singing, dancing",folsom,ca,elderly
-kabilan,kabilan@gmail.com,"singing, league",folsom,ca,caregiver
+name,email,hobbies,location,type
+eshan,eshan@gmail.com,"singing, dancing",folsom,elderly
+kabilan,kabilan@gmail.com,"singing, league",folsom,caregiver

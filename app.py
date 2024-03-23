@@ -23,17 +23,43 @@ def read_from_csv():
 def home():
     return render_template('home.html')
 
+role = ""
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    if request.method == 'POST':
+        # name = request.form['name']
+        # email = request.form['email']
+        # hobbies = request.form['hobbies']
+        # location = request.form['location']
+        role = request.form['role']
+        print(role)
+        # save_to_csv([name, email, hobbies, location, role])
+        if role == "caretaker":
+            return redirect(url_for('caretaker'))
+        else:
+            return redirect(url_for("caretaker"))
+    return render_template('signup.html')
+
+@app.route('/caretaker', methods=['GET', 'POST'])
+def caretaker():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         hobbies = request.form['hobbies']
         location = request.form['location']
-        role = request.form['role']
+        # role = request.form['role']
         save_to_csv([name, email, hobbies, location, role])
         return redirect(url_for('login'))
-    return render_template('signup.html')
+    return render_template('caretaker.html')
+
+
+
+
+
+
+
+
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
