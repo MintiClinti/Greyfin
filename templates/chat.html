@@ -1,0 +1,20 @@
+<script>
+    // Initialize socket connection
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+    // Event listener for receiving messages
+    socket.on('receive_message', function(data) {
+        $('#messages').append('<p><strong>' + data.sender_email + ':</strong> ' + data.message + '</p>');
+    });
+
+    // Function to send a message
+    function sendMessage() {
+        var message = $('#message_input').val().trim();
+        if (message !== '') {
+            var recipient_email = "{{ recipient_email }}";
+            socket.emit('send_message', {'recipient_email': recipient_email, 'message': message});
+            $('#message_input').val('');
+            $('#messages').append('<p><strong>You:</strong> ' + message + '</p>');
+        }
+    }
+</script>
