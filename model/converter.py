@@ -1,7 +1,8 @@
-from sklearn.model_selection import train_test_split
-import json
+import spacy
+import srsly
+from spacy.training import docs_to_json, offsets_to_biluo_tags, biluo_tags_to_spans
 
-TRAINING_DATA = [
+TRAIN_DATA = [
     ("I enjoy playing guitar.", {"entities": [(9, 15, "HOBBY")]}),
     ("Cooking is my passion.", {"entities": [(0, 7, "HOBBY")]}),
     ("I love hiking in the mountains.", {"entities": [(7, 13, "HOBBY")]}),
@@ -94,18 +95,27 @@ TRAINING_DATA = [
     ("I enjoy knitting and watching movies with friends.", {"entities": [(9, 16, "HOBBY"), (21, 46, "HOBBY")]}),
     ("I like to play the piano and practice yoga.", {"entities": [(9, 21, "HOBBY"), (26, 34, "HOBBY")]}),
     ("I spend my weekends reading classic literature and painting.", {"entities": [(27, 45, "HOBBY"), (50, 57, "HOBBY")]}),
-    ("My hobbies consist of scuba diving and bird watching.", {"entities": [(16, 28, "HOBBY"), (33, 45, "HOBBY")]}),
+    ("My hobbies consist of scuba diving and bird watching.", {"entities": [(16, 28, "HOBBY"), (33, 45, "HOBBY")]})
 ]
 
-# Assuming TRAINING_DATA contains your entire dataset
-# Split the data into training and validation sets (80% training, 20% validation)
-train_data, dev_data = train_test_split(TRAINING_DATA, test_size=0.2, random_state=42)
+nlp = spacy.load('en_core_web_sm')
+docs = []
+for text, annot in TRAIN_DATA[:70]:
+    doc = nlp(text)
+    tags = offsets_to_biluo_tags(doc, annot['entities'])
+    entities = biluo_tags_to_spans(doc, tags)
+    doc.ents = entities
+    docs.append(doc)
 
-# Save the training and development data to separate JSON files (if necessary)
-with open("./model/train_data.json", "w") as train_file:
-    train_examples = [{"text": example[0], "annotations": example[1]} for example in train_data]
-    json.dump(train_examples, train_file)
+srsly.write_json("./model/train.json", [docs_to_json(docs)])
 
-with open("./model/dev_data.json", "w") as dev_file:
-    dev_examples = [{"text": example[0], "annotations": example[1]} for example in dev_data]
-    json.dump(dev_examples, dev_file)
+docs = []
+for text, annot in TRAIN_DATA[70:]:
+    doc = nlp(text)
+    tags = offsets_to_biluo_tags(doc, annot['entities'])
+    entities = biluo_tags_to_spans(doc, tags)
+    doc.ents = entities
+    docs.append(doc)
+
+srsly.write_json("./model/dev.json", [docs_to_json(docs)])
+
