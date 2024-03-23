@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-   <style>
+    <style>
         h1 {text-align: center;}
-   </style>
+    </style>
 </head>
 <body>
 <h1>Greyfin</h1>
 <h2>Caretaker Form</h2>
-<form method="post">
-  Name: <input name="name"/>
-  <br/><br/>
-  Email: <input name="email"/>
-  <br/><br/>
+<form method="post" action="/caretaker"> <!-- Added action attribute -->
+    Name: <input name="name"/>
+    <br/><br/>
+    Email: <input name="email"/>
+    <br/><br/>
     Language: <input name="language"/>
     <br/><br/>
     City: <input name="city"/>
@@ -23,16 +23,14 @@
     <br/><br/>
     Hobbies: <input name="hobbies"/>
     <br/><br/>
-</form>
-<form>
-  <label for="gender">What is your gender?</label>
-  <select name="gender" id="gender">
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-    <option value="other">Other</option>
-  </select>
-  <br><br>
-  <button type="submit">Submit</button>
+    <label for="gender">What is your gender?</label>
+    <select name="gender" id="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+    </select>
+    <br><br>
+    <button type="submit">Submit</button>
 </form>
 </body>
 </html>

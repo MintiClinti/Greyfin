@@ -19,9 +19,10 @@
             <li>
                 <strong>Name:</strong> {{ user[0] }}<br>
                 <strong>Email:</strong> {{ user[1] }}<br>
-                <strong>Hobbies:</strong> {{ user[2] }}<br>
-                <strong>Location:</strong> {{ user[3] }}<br>
-                <strong>Role:</strong> {{ user[4] }}<br>
+                <strong>Language:</strong> {{ user[2] }}<br>
+                <strong>City:</strong> {{ user[3] }}<br>
+                <strong>State:</strong> {{ user[4] }}<br>
+                <strong>Hobbies:</strong> {{ user[4] }}<br>
                 {% if user[1] != session['email'] %}
                     <a href="{{ url_for('chat', recipient_email=user[1]) }}">Chat with {{ user[0] }}</a>
                 {% endif %}

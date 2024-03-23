@@ -45,10 +45,13 @@ def caretaker():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
-        hobbies = request.form['hobbies']
-        location = request.form['location']
+        language = request.form['language']
+        city = request.form['city']
+        state = request.form["state"]
+        hobbies = request.form["hobbies"]
+
         # role = request.form['role']
-        save_to_csv([name, email, hobbies, location, "caretaker"])
+        save_to_csv([name, email, language, city, state, hobbies, "caretaker"])
         return redirect(url_for('login'))
     return render_template('caretaker.html')
 
