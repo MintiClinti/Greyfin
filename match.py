@@ -8,7 +8,7 @@ e_city = 'folsom'
 e_state = 'ca'
 
 
-def range(city1, state1, city2, state2):
+def distancing(city1, state1, city2, state2):
     geolocator = Nominatim(user_agent="app")
 
     location1 = f"{city1}, {state1}"
@@ -40,23 +40,24 @@ def match(list1, list2):
     return n
 
 
-with open("users.csv") as users:
-    next(users)
-    read = csv.reader(users)
+def matcher(file, city, state):
+    with open(file) as users:
+        next(users)
+        read = csv.reader(users)
 
-    for user in read:
-        if user[-1] == 'elderly':
-            continue
-        c_hobbies = user[2].split(", ")
-        c_city = user[3]
-        c_state = user[4]
+        for user in read:
+            if user[-1] == 'elderly':
+                continue
+            c_hobbies = user[2].split(", ")
+            c_city = user[3]
+            c_state = user[4]
 
-        range_score = range(e_city, e_state, c_city, c_state)
-        match_score = match(e_hobbies, c_hobbies)
-        gross_score = range_score + match_score
+            range_score = distancing(city, state, c_city, c_state)
+            match_score = match(e_hobbies, c_hobbies)
+            gross_score = range_score + match_score
 
-        updated = user
-        updated.append(gross_score)
-        order.append(updated)
+            updated = user
+            updated.append(gross_score)
+            order.append(updated)
 
-print(sorted(order, key=lambda x:x[-1]))
+    return sorted(order, key=lambda x: x[-1])
