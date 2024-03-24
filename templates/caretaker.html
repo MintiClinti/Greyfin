@@ -9,8 +9,9 @@
 </head>
 <body>
 <h1>Grayfin</h1>
-<h2>Caretaker Form</h2>
-<form method="post" action="/caretaker">
+<link rel="stylesheet" href="{{ url_for('static', filename='caretaker.css')}}">
+<h2>     Caretaker Form</h2>
+<form method="post" action="/caretaker"> <!-- Added action attribute -->
     Name: <input name="name"/>
     <br/><br/>
     Email: <input name="email"/>
