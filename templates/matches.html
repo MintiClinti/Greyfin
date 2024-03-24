@@ -18,30 +18,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grayfin</title>
+    <title>Greyfin</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 </head>
 <body>
-    <h1>Grayfin</h1>
-    <h2>Matches</h2>
-    <h3>Welcome, {{ session['name'] }}</h3>
-    <ul>
-        {% for user in users %}
-            <li>
-                <strong>Name:</strong> {{ user[0] }}<br>
-                <strong>Email:</strong> {{ user[1] }}<br>
-                <strong>Language:</strong> {{ user[2] }}<br>
-                <strong>City:</strong> {{ user[3] }}<br>
-                <strong>State:</strong> {{ user[4] }}<br>
-                <strong>Hobbies:</strong> {{ user[4] }}<br>
-                {% if user[1] != session['email'] %}
-                    <a href="{{ url_for('chat', recipient_email=user[1]) }}">Chat with {{ user[0] }}</a>
-                {% endif %}
-                <hr>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Greyfin</h1>
+        <h2>Matches</h2>
+        <h3>Welcome, {{ session['name'] }}</h3>
+        <div class="row">
+            {% for user in users %}
+            <div class="col-md-4"> <!-- Adjust column size as needed -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ user[0] }}</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <strong>Name:</strong> {{ user[0] }}<br>
+                                <strong>Email:</strong> {{ user[1] }}<br>
+                                <strong>Language:</strong> {{ user[2] }}<br>
+                                <strong>City:</strong> {{ user[3] }}<br>
+                                <strong>State:</strong> {{ user[4] }}<br>
+                                <strong>Hobbies:</strong> {{ user[5] }}<br> <!-- Corrected index -->
+                                {% if user[1] != session['email'] %}
+                                    <a href="{{ url_for('chat', recipient_email=user[1]) }}" class="btn btn-primary">Chat with {{ user[0] }}</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Bootstrap JavaScript -->
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
 </body>
 </html>
 
