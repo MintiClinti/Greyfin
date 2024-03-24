@@ -22,9 +22,3 @@ def extract_keywords(sentence):
     keywords = word_freq.most_common(n)
 
     return [keyword[0] for keyword in keywords]
-
-
-# Example usage
-sentence = "I am addicted to fentanyl and need help regarding this issue"
-keywords = extract_keywords(sentence)
-print("Keywords:", keywords)

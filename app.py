@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import csv
 from flask_socketio import SocketIO, emit, send
+from model import extract_keywords
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -37,7 +38,7 @@ def signup():
         if role == "caregiver":
             return redirect(url_for('caretaker'))
         else:
-            return redirect(url_for("caretaker"))
+            return redirect(url_for('elderly'))
     return render_template('signup.html')
 
 @app.route('/caretaker', methods=['GET', 'POST'])
@@ -54,15 +55,6 @@ def caretaker():
         save_to_csv([name, email, language, city, state, hobbies, "caretaker"])
         return redirect(url_for('login'))
     return render_template('caretaker.html')
-
-
-
-
-
-
-
-
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -89,6 +81,38 @@ def matches():
     # Implement matching algorithm here
     # For simplicity, let's just pass all users to the template
     return render_template('matches.html', users=users)
+
+# Chat system
+questions = [
+    "Greyfin: Hi, my name is Greyfin, I'll be asking you a few questions.<br>Greyfin: What's your name?",
+    "Greyfin: Nice to meet you!<br>Greyfin: Now, what is your email?",
+    "Greyfin: Jotting that down.<br>Greyfin: Next, what language do you speak primarily?",
+    "Greyfin: Great!<br>Greyfin: What city do you live in?",
+    "Greyfin: And what state?",
+    "Greyfin: All recorded<br>Greyfin: Finally, what hobbies and interests do you have? You can explain this in a sentence or two."
+]
+
+conversation = [questions[0]]
+responses = []
+stage = 0
+
+@app.route('/elderly', methods=["GET", "POST"])
+def elderly():
+    global stage
+
+    if request.method == "POST":
+        msg = request.form.get("message")
+        conversation.append("You: " + msg)
+        responses.append(msg)
+        stage += 1
+        if stage < len(questions):
+            conversation.append(questions[stage])
+        else:
+            responses[5] = extract_keywords(responses[5])
+            save_to_csv(["".join(responses[0]), "".join(responses[1]), "".join(responses[2]), "".join(responses[3]), "".join(responses[4]), "".join(responses[5]), "elderly"])
+            return redirect(url_for('login'))
+
+    return render_template("session.html", conversation=conversation)
 
 @app.route('/chat/<recipient_email>')
 def chat(recipient_email):

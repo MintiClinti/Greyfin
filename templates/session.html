@@ -8,14 +8,14 @@
 <body>
     <h1>Chat</h1>
     <ul>
-        {% for response in responses %}
-            <p>YOU: {{ response }}</p>
+        {% for convo in conversation %}
+            <p>{{ convo | safe}}</p>
         {% endfor %}
     </ul>
     
     <form method="POST">
         <input type="text" name="message">
-        <input type="submit" value="Submit">
+        <input type="submit" value="Send">
     </form>
 </body>
 </html>
