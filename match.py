@@ -8,25 +8,25 @@ e_city = 'folsom'
 e_state = 'ca'
 
 
-def distancing(city1, state1, city2, state2):
-    geolocator = Nominatim(user_agent="app")
+# def distancing(city1, state1, city2, state2):
+#     geolocator = Nominatim(user_agent="app")
 
-    location1 = f"{city1}, {state1}"
-    location2 = f"{city2}, {state2}"
+#     location1 = f"{city1}, {state1}"
+#     location2 = f"{city2}, {state2}"
 
-    location_info1 = geolocator.geocode(location1)
-    location_info2 = geolocator.geocode(location2)
+#     location_info1 = geolocator.geocode(location1)
+#     location_info2 = geolocator.geocode(location2)
 
-    lat1 = location_info1.latitude
-    lon1 = location_info1.longitude
-    lat2 = location_info2.latitude
-    lon2 = location_info2.longitude
+#     lat1 = location_info1.latitude
+#     lon1 = location_info1.longitude
+#     lat2 = location_info2.latitude
+#     lon2 = location_info2.longitude
 
-    kms = distance.distance((lat1, lon1), (lat2, lon2))
-    if kms < 49:
-        return 1.0
-    else:
-        return 0.5
+#     kms = distance.distance((lat1, lon1), (lat2, lon2))
+#     if kms < 49:
+#         return 1.0
+#     else:
+#         return 0.5
 
 
 def match(list1, list2):
@@ -52,12 +52,14 @@ def matcher(file, city, state):
             c_city = user[3]
             c_state = user[4]
 
-            range_score = distancing(city, state, c_city, c_state)
+            # range_score = distancing(city, state, c_city, c_state)
             match_score = match(e_hobbies, c_hobbies)
-            gross_score = range_score + match_score
+            # gross_score = range_score + match_score
 
             updated = user
-            updated.append(gross_score)
+            updated.append(match_score)
+            
             order.append(updated)
 
     return sorted(order, key=lambda x: x[-1])
+

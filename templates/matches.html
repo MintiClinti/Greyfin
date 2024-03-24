@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
     <link rel="stylesheet" src="static/matches.css">
@@ -9,6 +12,15 @@
     <style>
         h1 {text-align: center;}
    </style>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greyfin</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 </head>
 <body>
     <h1>Grayfin</h1>
@@ -32,3 +44,6 @@
     </ul>
 </body>
 </html>
+
+</html>
+{% endblock %}

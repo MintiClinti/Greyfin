@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import csv
 from flask_socketio import SocketIO, emit, send
 from model import extract_keywords
+from match import matcher
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -38,8 +39,12 @@ def signup():
         if role == "caregiver":
             return redirect(url_for('caretaker'))
         else:
-            return redirect(url_for('elderly'))
+            return redirect(url_for("caretaker"))
     return render_template('signup.html')
+
+# @app.route('/elderly', methods=["GET", "POST"])
+# def elderly():
+#     return render_template("session.html")
 
 @app.route('/caretaker', methods=['GET', 'POST'])
 def caretaker():
@@ -67,7 +72,9 @@ def login():
                 # Set session variables
                 session['name'] = user[0]  # Assuming name is stored at index 0
                 session['email'] = user[1]
-                session['role'] = user[4]   # Assuming role is stored at index 4
+                session['state'] = user[4]   # Assuming role is stored at index 4
+                session['city'] = user[3]
+                session['hobbies'] = user[5]
                 return redirect(url_for('matches'))
         # If user not found, redirect back to login page with a message
         return render_template('login.html', message='Invalid email. Please try again.')
@@ -77,7 +84,12 @@ def login():
 def matches():
     if 'email' not in session:
         return redirect(url_for('login'))
-    users = read_from_csv()
+    # users = read_from_csv()
+
+    hobby1 = session['hobbies'].split(", ")[0]
+    hobby2 = session['hobbies'].split(", ")[1]
+    users = matcher("users.csv", hobby1, hobby2)
+
     # Implement matching algorithm here
     # For simplicity, let's just pass all users to the template
     return render_template('matches.html', users=users)

@@ -1,5 +1,32 @@
 name,email,language,city,state,hobbies,iscaretaker
-eshan,eshan@gmail.com,retardish,california,"singing, dancing", caretaker
-wefwef,wefwef,wefwef,wefwef,wefwef,lovedrinkingbeerknitting,elderly
-qwdqwdwef,wef,wef,wef,wef,wef,elderly
-asd,,asd,asd,asd,asd,elderly
+eshan,eshan@example.com,english,folsom,california,"soccer, swimming",elderly
+alex,alex@example.com,english,sacramento,california,"swimming, dancing",caretaker
+sophia,sophia@example.com,english,roseville,california,"soccer, gaming",elderly
+jack,jack@example.com,english,rocklin,california,"basketball, singing",caretaker
+amelia,amelia@example.com,english,eldorado hills,california,"gaming, soccer",elderly
+noah,noah@example.com,english,granite bay,california,"singing, dancing",caretaker
+mia,mia@example.com,english,citrus heights,california,"swimming, basketball",elderly
+ethan,ethan@example.com,english,rancho cordova,california,"basketball, gaming",caretaker
+ava,ava@example.com,english,lincoln,california,"soccer, dancing",elderly
+logan,logan@example.com,english,orangevale,california,"gaming, swimming",caretaker
+madison,madison@example.com,english,fair oaks,california,"dancing, singing",elderly
+oliver,oliver@example.com,english,sacramento,california,"swimming, gaming",caretaker
+chloe,chloe@example.com,english,roseville,california,"soccer, dancing",elderly
+lucas,lucas@example.com,english,rocklin,california,"basketball, gaming",caretaker
+ella,ella@example.com,english,eldorado hills,california,"singing, swimming",caretaker
+jackson,jackson@example.com,english,granite bay,california,"gaming, basketball",elderly
+scarlett,scarlett@example.com,english,citrus heights,california,"dancing, soccer",caretaker
+aiden,aiden@example.com,english,rancho cordova,california,"basketball, singing",caretaker
+emily,emily@example.com,english,lincoln,california,"swimming, gaming",elderly
+mia,mia@example.com,english,orangevale,california,"singing, soccer",caretaker
+carter,carter@example.com,english,fair oaks,california,"gaming, basketball",elderly
+harper,harper@example.com,english,sacramento,california,"soccer, swimming",caretaker
+david,david@example.com,english,roseville,california,"dancing, gaming",elderly
+amelia,amelia@example.com,english,rocklin,california,"basketball, singing",caretaker
+oliver,oliver@example.com,english,eldorado hills,california,"gaming, soccer",caretaker
+ava,ava@example.com,english,granite bay,california,"singing, basketball",elderly
+william,william@example.com,english,citrus heights,california,"gaming, dancing",caretaker
+sophia,sophia@example.com,english,rancho cordova,california,"soccer, singing",caretaker
+mason,mason@example.com,english,lincoln,california,"dancing, gaming",elderly
+emma,emma@example.com,english,orangevale,california,"basketball, swimming",caretaker
+liam,liam@example.com,english,fair oaks,california,"singing, gaming",elderly
