@@ -18,7 +18,7 @@ def extract_keywords(sentence):
     word_freq = FreqDist(filtered_words)
 
     # Get the most common keywords (adjust `n` as needed)
-    n = 3  # Number of keywords to extract
+    n = 4  # Number of keywords to extract
     keywords = word_freq.most_common(n)
 
     return [keyword[0] for keyword in keywords]
