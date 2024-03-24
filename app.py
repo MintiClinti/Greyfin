@@ -29,22 +29,13 @@ role = ""
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        # name = request.form['name']
-        # email = request.form['email']
-        # hobbies = request.form['hobbies']
-        # location = request.form['location']
         role = request.form['role']
         print(role)
-        # save_to_csv([name, email, hobbies, location, role])
         if role == "caregiver":
             return redirect(url_for('caretaker'))
         else:
             return redirect(url_for("elderly"))
     return render_template('signup.html')
-
-# @app.route('/elderly', methods=["GET", "POST"])
-# def elderly():
-#     return render_template("session.html")
 
 @app.route('/caretaker', methods=['GET', 'POST'])
 def caretaker():
@@ -121,7 +112,7 @@ def elderly():
             conversation.append(questions[stage])
         else:
             responses[5] = extract_keywords(responses[5])
-            save_to_csv(["".join(responses[0]), "".join(responses[1]), "".join(responses[2]), "".join(responses[3]), "".join(responses[4]), "".join(responses[5]), "elderly"])
+            save_to_csv(["".join(responses[0]), "".join(responses[1]), "".join(responses[2]), "".join(responses[3]), "".join(responses[4]), responses[5], "elderly"])
             return redirect(url_for('login'))
 
     return render_template("session.html", conversation=conversation)
