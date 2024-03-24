@@ -39,7 +39,7 @@ def signup():
         if role == "caregiver":
             return redirect(url_for('caretaker'))
         else:
-            return redirect(url_for("caretaker"))
+            return redirect(url_for("elderly"))
     return render_template('signup.html')
 
 # @app.route('/elderly', methods=["GET", "POST"])
