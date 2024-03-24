@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grayfin Chat</title>
+</head>
+<body>
+    <h1>Chat</h1>
+    <ul>
+        {% for response in responses %}
+            <p>YOU: {{ response }}</p>
+        {% endfor %}
+    </ul>
+    
+    <form method="POST">
+        <input type="text" name="message">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
