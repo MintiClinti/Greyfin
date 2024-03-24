@@ -1,44 +1,35 @@
-/* Apply some basic styles to the body */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f2f2f2;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; /* Added to stack elements vertically */
 }
 
-/* Style the header */
 h1 {
+    text-align: center;
     color: #333;
-    text-align: center;
-    margin-top: 50px;
 }
 
-/* Style the paragraph */
 p {
-    color: #666;
     text-align: center;
+    color: #666;
+    margin-top: 20px; /* Added margin to separate from h1 */
 }
 
-/* Style the links */
 a {
-    color: #007bff;
+    text-align: center;
+    margin-top: 10px; /* Added margin to separate links */
     text-decoration: none;
+    color: #4CAF50;
+    font-weight: bold;
+    display: block; /* Display each link on its own line */
 }
 
 a:hover {
-    text-decoration: underline;
-}
-
-/* Center the links */
-a {
-    display: inline-block;
-    margin: 20px;
-}
-
-/* Style the links on smaller screens */
-@media (max-width: 600px) {
-    a {
-        display: block;
-        margin: 10px auto;
-    }
+    color: #45a049;
 }
