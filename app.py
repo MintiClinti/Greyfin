@@ -10,7 +10,7 @@ socketio = SocketIO(app)
 
 # Function to save user data to CSV file
 def save_to_csv(data):
-    with open('users.csv', mode='a', newline='') as file:
+    with open('users.csv', mode='a') as file:
         writer = csv.writer(file)
         writer.writerow(data)
 

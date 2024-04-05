@@ -52,9 +52,7 @@ def matcher(file, city, state):
             c_city = user[3]
             c_state = user[4]
 
-            # range_score = distancing(city, state, c_city, c_state)
             match_score = match(e_hobbies, c_hobbies)
-            # gross_score = range_score + match_score
 
             updated = user
             updated.append(match_score)
